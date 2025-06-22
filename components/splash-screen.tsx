@@ -164,7 +164,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
                   <div className="relative w-32 h-32 mx-auto mb-6">
                     {/* Outer Royal Ring */}
                     <motion.div 
-                      className="absolute inset-0 rounded-full border-4 border-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500"
+                      className="absolute inset-0 rounded-full border-4"
                       style={{
                         background: 'conic-gradient(from 0deg, #fbbf24, #f59e0b, #d97706, #fbbf24)',
                         padding: '4px',
