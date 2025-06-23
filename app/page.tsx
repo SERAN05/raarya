@@ -22,6 +22,19 @@ export default function HomePage() {
 
   const featuredProperties = sampleProperties.slice(0, 6);
 
+  // Check if splash should be shown
+  useEffect(() => {
+    const hasShownSplash = sessionStorage.getItem('raarya-splash-shown');
+    if (hasShownSplash) {
+      setShowSplash(false);
+    }
+  }, []);
+
+  const handleSplashComplete = () => {
+    setShowSplash(false);
+    sessionStorage.setItem('raarya-splash-shown', 'true');
+  };
+
   const handleSearch = () => {
     alert(`Searching for properties...\nLocation: ${searchLocation || 'Any'}\nType: ${propertyType || 'Any'}\nBudget: ${budget || 'Any'}\n\nRedirecting to search results...`);
     router.push('/buy');
@@ -39,8 +52,9 @@ export default function HomePage() {
     router.push('/rent');
   };
 
+  // Show splash screen if needed
   if (showSplash) {
-    return <SplashScreen onComplete={() => setShowSplash(false)} />;
+    return <SplashScreen onComplete={handleSplashComplete} />;
   }
 
   return (

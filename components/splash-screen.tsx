@@ -13,35 +13,25 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
   const [showLogo, setShowLogo] = useState(false);
   const [showText, setShowText] = useState(false);
   const [showSubtext, setShowSubtext] = useState(false);
+  const [showTagline, setShowTagline] = useState(false);
 
   useEffect(() => {
-    // Check if splash has been shown in this session
-    const hasShownSplash = sessionStorage.getItem('raarya-splash-shown');
-    
-    if (hasShownSplash) {
-      // Skip splash if already shown in this session
-      setIsVisible(false);
-      onComplete();
-      return;
-    }
-
-    // Mark splash as shown for this session
-    sessionStorage.setItem('raarya-splash-shown', 'true');
-
-    // Orchestrate the animation sequence
-    const logoTimer = setTimeout(() => setShowLogo(true), 300);
-    const textTimer = setTimeout(() => setShowText(true), 800);
-    const subtextTimer = setTimeout(() => setShowSubtext(true), 1200);
+    // Orchestrate the animation sequence with exact timing
+    const logoTimer = setTimeout(() => setShowLogo(true), 300);      // 0.3s
+    const textTimer = setTimeout(() => setShowText(true), 800);      // 0.8s
+    const subtextTimer = setTimeout(() => setShowSubtext(true), 1200); // 1.2s
+    const taglineTimer = setTimeout(() => setShowTagline(true), 1600); // 1.6s
     
     const exitTimer = setTimeout(() => {
       setIsVisible(false);
-      setTimeout(onComplete, 800); // Wait for fade out animation
-    }, 2500);
+      setTimeout(onComplete, 500); // Wait for fade out animation
+    }, 2500); // 2.5s total
 
     return () => {
       clearTimeout(logoTimer);
       clearTimeout(textTimer);
       clearTimeout(subtextTimer);
+      clearTimeout(taglineTimer);
       clearTimeout(exitTimer);
     };
   }, [onComplete]);
@@ -53,7 +43,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.5 }}
           className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden"
         >
           {/* Royal Background Pattern */}
@@ -143,18 +133,23 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
           </div>
 
           {/* Radial Gradient Overlay for Depth */}
-          <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/40" />
+          <div 
+            className="absolute inset-0 opacity-40"
+            style={{
+              background: 'radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%)'
+            }}
+          />
 
           {/* Main Content Container */}
           <div className="relative z-10 text-center">
-            {/* Logo Animation */}
+            {/* Logo Animation - 0.3s */}
             <AnimatePresence>
               {showLogo && (
                 <motion.div
                   initial={{ scale: 0, opacity: 0, rotateY: 180 }}
                   animate={{ scale: 1, opacity: 1, rotateY: 0 }}
                   transition={{ 
-                    duration: 1.2, 
+                    duration: 0.8, 
                     ease: [0.23, 1, 0.32, 1],
                     type: "spring",
                     stiffness: 100
@@ -226,7 +221,7 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
                       animate={{ y: 0, opacity: 1, scale: 1 }}
                       transition={{ 
                         duration: 1, 
-                        delay: 0.5, 
+                        delay: 0.3, 
                         type: "spring", 
                         stiffness: 200,
                         damping: 10
@@ -256,14 +251,14 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
               )}
             </AnimatePresence>
 
-            {/* Main Brand Text */}
+            {/* Main Brand Text - 0.8s */}
             <AnimatePresence>
               {showText && (
                 <motion.div
                   initial={{ y: 50, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ 
-                    duration: 1, 
+                    duration: 0.8, 
                     ease: [0.23, 1, 0.32, 1],
                     type: "spring",
                     stiffness: 100
@@ -297,16 +292,15 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
               )}
             </AnimatePresence>
 
-            {/* Subtitle */}
+            {/* Subtitle - 1.2s */}
             <AnimatePresence>
               {showSubtext && (
                 <motion.div
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ 
-                    duration: 0.8, 
-                    ease: [0.23, 1, 0.32, 1],
-                    delay: 0.2
+                    duration: 0.6, 
+                    ease: [0.23, 1, 0.32, 1]
                   }}
                 >
                   <motion.p 
@@ -322,24 +316,38 @@ export function SplashScreen({ onComplete }: SplashScreenProps) {
                   >
                     PROPERTIES
                   </motion.p>
-                  
-                  {/* Elegant Tagline */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.6, delay: 0.4 }}
-                    className="flex items-center justify-center space-x-4"
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Elegant Tagline - 1.6s */}
+            <AnimatePresence>
+              {showTagline && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex items-center justify-center space-x-4"
+                >
+                  <motion.div 
+                    className="w-12 h-px bg-gradient-to-r from-transparent via-yellow-400 to-transparent"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.8 }}
+                  />
+                  <motion.span 
+                    className="text-yellow-400 text-sm font-medium tracking-widest uppercase"
+                    animate={{ opacity: [0.7, 1, 0.7] }}
+                    transition={{ duration: 2, repeat: Infinity }}
                   >
-                    <div className="w-12 h-px bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
-                    <motion.span 
-                      className="text-yellow-400 text-sm font-medium tracking-widest uppercase"
-                      animate={{ opacity: [0.7, 1, 0.7] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      Luxury Redefined
-                    </motion.span>
-                    <div className="w-12 h-px bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
-                  </motion.div>
+                    Luxury Redefined
+                  </motion.span>
+                  <motion.div 
+                    className="w-12 h-px bg-gradient-to-r from-transparent via-yellow-400 to-transparent"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 0.8 }}
+                  />
                 </motion.div>
               )}
             </AnimatePresence>
