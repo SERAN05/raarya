@@ -126,16 +126,25 @@ export default function ServicesPage() {
     const P = parseFloat(loanAmount);
     const r = parseFloat(interestRate) / 12 / 100;
     const n = parseFloat(tenure) * 12;
-
-    if (P > 0 && r > 0 && n > 0) {
-      const emiValue = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-      const totalAmountValue = emiValue * n;
-      const totalInterestValue = totalAmountValue - P;
-
-      setEmi(emiValue);
-      setTotalAmount(totalAmountValue);
-      setTotalInterest(totalInterestValue);
+    if (isNaN(P) || isNaN(r) || isNaN(n) || P <= 0 || r <= 0 || n <= 0) {
+      alert('Please enter valid positive numbers for all fields.');
+      return;
     }
+    const emiValue = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalAmountValue = emiValue * n;
+    const totalInterestValue = totalAmountValue - P;
+    setEmi(emiValue);
+    setTotalAmount(totalAmountValue);
+    setTotalInterest(totalInterestValue);
+  };
+
+  const resetEMI = () => {
+    setLoanAmount('5000000');
+    setInterestRate('8.5');
+    setTenure('20');
+    setEmi(0);
+    setTotalAmount(0);
+    setTotalInterest(0);
   };
 
   const formatCurrency = (amount: number) => {
@@ -306,6 +315,7 @@ export default function ServicesPage() {
                     <motion.div
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
+                      className="flex gap-2"
                     >
                       <Button 
                         onClick={calculateEMI}
@@ -313,6 +323,14 @@ export default function ServicesPage() {
                       >
                         <Calculator className="w-4 h-4 mr-2" />
                         Calculate EMI
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={resetEMI}
+                        className="w-full border-gold-400/50 text-gold-400 hover:bg-gold-400 hover:text-slate-900 transition-all duration-300"
+                      >
+                        Reset
                       </Button>
                     </motion.div>
                   </div>

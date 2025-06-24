@@ -66,82 +66,89 @@ export default function BuyPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            <Card className="bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-xl border-gold-400/20 p-6 shadow-2xl">
-              <div className="flex items-center justify-between mb-4">
-                <motion.h2 
-                  className="text-lg font-semibold text-white flex items-center"
-                  animate={{ 
-                    color: ["#ffffff", "#fbbf24", "#ffffff"]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <Filter className="w-5 h-5 mr-2" />
-                  Advanced Filters
-                </motion.h2>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Button className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white shadow-lg hover:shadow-emerald-500/25 transition-all duration-300">
-                    <Search className="w-4 h-4 mr-2" />
-                    Search
-                  </Button>
-                </motion.div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                <div>
-                  <label className="text-sm font-medium text-slate-300 mb-2 block">Location</label>
-                  <Input
-                    placeholder="City, Area, Locality"
-                    value={searchLocation}
-                    onChange={(e) => setSearchLocation(e.target.value)}
-                    className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400"
-                  />
+            <motion.div
+              initial={{ boxShadow: '0 0 0px 0px #fbbf24' }}
+              animate={{ boxShadow: [
+                '0 0 20px 0px #fbbf24',
+                '0 0 40px 10px #a78bfa',
+                '0 0 20px 0px #fbbf24'
+              ] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <Card className="bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-xl border-2 border-gold-400/40 p-6 shadow-2xl">
+                <div className="flex items-center justify-between mb-4">
+                  <motion.h2 
+                    className="text-lg font-semibold text-white flex items-center"
+                    animate={{ color: ["#ffffff", "#fbbf24", "#ffffff"] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  >
+                    <Filter className="w-5 h-5 mr-2" />
+                    Advanced Filters
+                  </motion.h2>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white shadow-lg hover:shadow-emerald-500/25 transition-all duration-300">
+                      <Search className="w-4 h-4 mr-2" />
+                      Search
+                    </Button>
+                  </motion.div>
                 </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-300 mb-2 block">Property Type</label>
-                  <Select value={propertyType} onValueChange={setPropertyType}>
-                    <SelectTrigger className="bg-slate-800/50 border-slate-600 text-white focus:border-gold-400">
-                      <SelectValue placeholder="All Types" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="residential">Residential</SelectItem>
-                      <SelectItem value="commercial">Commercial</SelectItem>
-                      <SelectItem value="agricultural">Agricultural</SelectItem>
-                      <SelectItem value="industrial">Industrial</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                  <div>
+                    <label className="text-sm font-medium text-slate-300 mb-2 block">Location</label>
+                    <Input
+                      placeholder="City, Area, Locality"
+                      value={searchLocation}
+                      onChange={(e) => setSearchLocation(e.target.value)}
+                      className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-300 mb-2 block">Property Type</label>
+                    <Select value={propertyType} onValueChange={setPropertyType}>
+                      <SelectTrigger className="bg-slate-800/50 border-slate-600 text-white focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40">
+                        <SelectValue placeholder="All Types" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="residential">Residential</SelectItem>
+                        <SelectItem value="commercial">Commercial</SelectItem>
+                        <SelectItem value="agricultural">Agricultural</SelectItem>
+                        <SelectItem value="industrial">Industrial</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-300 mb-2 block">Min Price (₹L)</label>
+                    <Input
+                      placeholder="Min"
+                      value={minPrice}
+                      onChange={(e) => setMinPrice(e.target.value)}
+                      className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-300 mb-2 block">Max Price (₹L)</label>
+                    <Input
+                      placeholder="Max"
+                      value={maxPrice}
+                      onChange={(e) => setMaxPrice(e.target.value)}
+                      className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-slate-300 mb-2 block">Area (Sq Ft)</label>
+                    <Input
+                      placeholder="Min Area"
+                      value={minArea}
+                      onChange={(e) => setMinArea(e.target.value)}
+                      className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-300 mb-2 block">Min Price (₹L)</label>
-                  <Input
-                    placeholder="Min"
-                    value={minPrice}
-                    onChange={(e) => setMinPrice(e.target.value)}
-                    className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-300 mb-2 block">Max Price (₹L)</label>
-                  <Input
-                    placeholder="Max"
-                    value={maxPrice}
-                    onChange={(e) => setMaxPrice(e.target.value)}
-                    className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium text-slate-300 mb-2 block">Area (Sq Ft)</label>
-                  <Input
-                    placeholder="Min Area"
-                    value={minArea}
-                    onChange={(e) => setMinArea(e.target.value)}
-                    className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400"
-                  />
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </motion.div>
           </motion.div>
         </div>
       </section>

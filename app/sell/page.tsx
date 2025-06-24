@@ -111,163 +111,157 @@ export default function SellPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
           >
-            <Card className="bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-xl border-gold-400/20 p-8 shadow-2xl">
-              <motion.h2 
-                className="text-2xl font-bold text-white mb-6 text-center"
-                animate={{ 
-                  color: ["#ffffff", "#fbbf24", "#ffffff"]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                Property Details
-              </motion.h2>
-              
-              <div className="text-center mb-8">
-                <div className="flex justify-center space-x-4 mb-6">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    step >= 1 ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-400'
-                  }`}>
-                    1
-                  </div>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    step >= 2 ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-400'
-                  }`}>
-                    2
-                  </div>
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                    step >= 3 ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-400'
-                  }`}>
-                    3
+            <motion.div
+              initial={{ boxShadow: '0 0 0px 0px #fbbf24' }}
+              animate={{ boxShadow: [
+                '0 0 20px 0px #fbbf24',
+                '0 0 40px 10px #a78bfa',
+                '0 0 20px 0px #fbbf24'
+              ] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            >
+              <Card className="bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-xl border-2 border-gold-400/40 p-8 shadow-2xl">
+                <motion.h2 
+                  className="text-2xl font-bold text-white mb-6 text-center"
+                  animate={{ color: ["#ffffff", "#fbbf24", "#ffffff"] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  Property Details
+                </motion.h2>
+                <div className="text-center mb-8">
+                  <div className="flex justify-center space-x-4 mb-6">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${step >= 1 ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-400'}`}>1</div>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${step >= 2 ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-400'}`}>2</div>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${step >= 3 ? 'bg-emerald-500 text-white' : 'bg-slate-700 text-slate-400'}`}>3</div>
                   </div>
                 </div>
-              </div>
-
-              {step === 1 && (
-                <div className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm font-medium text-slate-300 mb-2 block">Property Type</label>
-                      <Select value={formData.propertyType} onValueChange={(value) => setFormData({...formData, propertyType: value})}>
-                        <SelectTrigger className="bg-slate-800/50 border-slate-600 text-white focus:border-gold-400">
-                          <SelectValue placeholder="Select Property Type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="residential">Residential</SelectItem>
-                          <SelectItem value="commercial">Commercial</SelectItem>
-                          <SelectItem value="agricultural">Agricultural</SelectItem>
-                          <SelectItem value="industrial">Industrial</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-slate-300 mb-2 block">Location</label>
-                      <Input
-                        placeholder="City, Area, Locality"
-                        value={formData.location}
-                        onChange={(e) => setFormData({...formData, location: e.target.value})}
-                        className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="text-sm font-medium text-slate-300 mb-2 block">Area (Sq Ft)</label>
-                      <Input
-                        placeholder="Total area in sq ft"
-                        value={formData.area}
-                        onChange={(e) => setFormData({...formData, area: e.target.value})}
-                        className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm font-medium text-slate-300 mb-2 block">Expected Price (₹)</label>
-                      <Input
-                        placeholder="Enter expected price"
-                        value={formData.expectedPrice}
-                        onChange={(e) => setFormData({...formData, expectedPrice: e.target.value})}
-                        className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400"
-                      />
-                    </div>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="text-sm font-medium text-slate-300 mb-2 block">Property Description</label>
-                    <Textarea
-                      placeholder="Describe your property, features, amenities, etc."
-                      value={formData.description}
-                      onChange={(e) => setFormData({...formData, description: e.target.value})}
-                      className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 min-h-32"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="text-sm font-medium text-slate-300 mb-2 block">Property Images</label>
-                    <div className="border-2 border-dashed border-slate-600 rounded-lg p-8 text-center hover:border-gold-400 transition-colors">
-                      <Upload className="w-8 h-8 text-slate-400 mx-auto mb-4" />
-                      <p className="text-slate-400 mb-2">Click to upload or drag and drop</p>
-                      <p className="text-slate-500 text-sm">PNG, JPG, GIF up to 10MB</p>
-                    </div>
-                  </div>
-                  <Button 
-                    onClick={handleNextStep}
-                    className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 text-lg shadow-xl hover:shadow-orange-500/25 transition-all duration-300"
-                  >
-                    Next Step
-                  </Button>
-                </div>
-              )}
-
-              {step === 2 && (
-                <div className="text-center space-y-6">
-                  <div className="text-white">
-                    <h3 className="text-xl font-semibold mb-4">Property Verification</h3>
-                    <p className="text-slate-300 mb-8">Our team will verify your property details and documents</p>
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-center space-x-3 text-emerald-400">
-                        <CheckCircle className="w-5 h-5" />
-                        <span>Property details verified</span>
+                {step === 1 && (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm font-medium text-slate-300 mb-2 block">Property Type</label>
+                        <Select value={formData.propertyType} onValueChange={(value) => setFormData({...formData, propertyType: value})}>
+                          <SelectTrigger className="bg-slate-800/50 border-slate-600 text-white focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40">
+                            <SelectValue placeholder="Select Property Type" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="residential">Residential</SelectItem>
+                            <SelectItem value="commercial">Commercial</SelectItem>
+                            <SelectItem value="agricultural">Agricultural</SelectItem>
+                            <SelectItem value="industrial">Industrial</SelectItem>
+                          </SelectContent>
+                        </Select>
                       </div>
-                      <div className="flex items-center justify-center space-x-3 text-emerald-400">
-                        <CheckCircle className="w-5 h-5" />
-                        <span>Market analysis completed</span>
-                      </div>
-                      <div className="flex items-center justify-center space-x-3 text-emerald-400">
-                        <CheckCircle className="w-5 h-5" />
-                        <span>Documentation reviewed</span>
+                      <div>
+                        <label className="text-sm font-medium text-slate-300 mb-2 block">Location</label>
+                        <Input
+                          placeholder="City, Area, Locality"
+                          value={formData.location}
+                          onChange={(e) => setFormData({...formData, location: e.target.value})}
+                          className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
+                        />
                       </div>
                     </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="text-sm font-medium text-slate-300 mb-2 block">Area (Sq Ft)</label>
+                        <Input
+                          placeholder="Total area in sq ft"
+                          value={formData.area}
+                          onChange={(e) => setFormData({...formData, area: e.target.value})}
+                          className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm font-medium text-slate-300 mb-2 block">Expected Price (₹)</label>
+                        <Input
+                          placeholder="Enter expected price"
+                          value={formData.expectedPrice}
+                          onChange={(e) => setFormData({...formData, expectedPrice: e.target.value})}
+                          className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
+                        />
+                      </div>
+                    </div>
+                    <div className="md:col-span-2">
+                      <label className="text-sm font-medium text-slate-300 mb-2 block">Property Description</label>
+                      <Textarea
+                        placeholder="Describe your property, features, amenities, etc."
+                        value={formData.description}
+                        onChange={(e) => setFormData({...formData, description: e.target.value})}
+                        className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40 min-h-32"
+                      />
+                    </div>
+                    <div className="md:col-span-2">
+                      <label className="text-sm font-medium text-slate-300 mb-2 block">Property Images</label>
+                      <div className="border-2 border-dashed border-slate-600 rounded-lg p-8 text-center hover:border-gold-400 transition-colors">
+                        <Upload className="w-8 h-8 text-slate-400 mx-auto mb-4" />
+                        <p className="text-slate-400 mb-2">Click to upload or drag and drop</p>
+                        <p className="text-slate-500 text-sm">PNG, JPG, GIF up to 10MB</p>
+                      </div>
+                    </div>
+                    <Button 
+                      onClick={handleNextStep}
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 text-lg shadow-xl hover:shadow-orange-500/25 transition-all duration-300"
+                    >
+                      Next Step
+                    </Button>
                   </div>
-                  <Button 
-                    onClick={handleNextStep}
-                    className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 text-lg shadow-xl hover:shadow-orange-500/25 transition-all duration-300"
-                  >
-                    Continue
-                  </Button>
-                </div>
-              )}
+                )}
 
-              {step === 3 && (
-                <div className="text-center space-y-6">
-                  <div className="text-white">
-                    <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <CheckCircle className="w-8 h-8 text-white" />
+                {step === 2 && (
+                  <div className="text-center space-y-6">
+                    <div className="text-white">
+                      <h3 className="text-xl font-semibold mb-4">Property Verification</h3>
+                      <p className="text-slate-300 mb-8">Our team will verify your property details and documents</p>
+                      <div className="space-y-4">
+                        <div className="flex items-center justify-center space-x-3 text-emerald-400">
+                          <CheckCircle className="w-5 h-5" />
+                          <span>Property details verified</span>
+                        </div>
+                        <div className="flex items-center justify-center space-x-3 text-emerald-400">
+                          <CheckCircle className="w-5 h-5" />
+                          <span>Market analysis completed</span>
+                        </div>
+                        <div className="flex items-center justify-center space-x-3 text-emerald-400">
+                          <CheckCircle className="w-5 h-5" />
+                          <span>Documentation reviewed</span>
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold mb-4">Listing Submitted Successfully!</h3>
-                    <p className="text-slate-300 mb-8">
-                      Your property has been submitted for review. Our team will contact you within 24 hours to discuss the next steps.
-                    </p>
-                    <div className="bg-slate-800/50 rounded-lg p-4 mb-6">
-                      <p className="text-sm text-slate-400 mb-2">Reference ID</p>
-                      <p className="text-emerald-400 font-mono text-lg">RAARYA-{Date.now().toString().slice(-6)}</p>
-                    </div>
+                    <Button 
+                      onClick={handleNextStep}
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-8 py-4 text-lg shadow-xl hover:shadow-orange-500/25 transition-all duration-300"
+                    >
+                      Continue
+                    </Button>
                   </div>
-                  <Button 
-                    onClick={() => window.location.href = '/'}
-                    className="w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white px-8 py-4 text-lg shadow-xl hover:shadow-emerald-500/25 transition-all duration-300"
-                  >
-                    Back to Home
-                  </Button>
-                </div>
-              )}
-            </Card>
+                )}
+
+                {step === 3 && (
+                  <div className="text-center space-y-6">
+                    <div className="text-white">
+                      <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <CheckCircle className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-4">Listing Submitted Successfully!</h3>
+                      <p className="text-slate-300 mb-8">
+                        Your property has been submitted for review. Our team will contact you within 24 hours to discuss the next steps.
+                      </p>
+                      <div className="bg-slate-800/50 rounded-lg p-4 mb-6">
+                        <p className="text-sm text-slate-400 mb-2">Reference ID</p>
+                        <p className="text-emerald-400 font-mono text-lg">RAARYA-{Date.now().toString().slice(-6)}</p>
+                      </div>
+                    </div>
+                    <Button 
+                      onClick={() => window.location.href = '/'}
+                      className="w-full bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white px-8 py-4 text-lg shadow-xl hover:shadow-emerald-500/25 transition-all duration-300"
+                    >
+                      Back to Home
+                    </Button>
+                  </div>
+                )}
+              </Card>
+            </motion.div>
           </motion.div>
         </div>
       </section>

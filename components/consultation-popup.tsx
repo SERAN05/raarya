@@ -44,6 +44,15 @@ export function ConsultationPopup({ isOpen, onClose, serviceType }: Consultation
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') onClose();
+    }
+    document.addEventListener('keydown', handleKey);
+    return () => document.removeEventListener('keydown', handleKey);
+  }, [isOpen, onClose]);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     alert('Thank you for your consultation request! Our expert will contact you within 24 hours.');
@@ -125,8 +134,10 @@ export function ConsultationPopup({ isOpen, onClose, serviceType }: Consultation
             
             {/* Close Button */}
             <button
+              type="button"
+              aria-label="Close consultation details"
               onClick={onClose}
-              className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700/80 flex items-center justify-center text-white transition-colors"
+              className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700/80 flex items-center justify-center text-white transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
             >
               <X className="w-4 h-4" />
             </button>

@@ -10,6 +10,7 @@ import { Card } from '@/components/ui/card';
 import { Heart, MapPin, Bed, Bath, Square, Calendar, Phone, Mail } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 import { createPortal } from 'react-dom';
+import { PropertyDetailsModal } from './property-details-modal';
 
 interface PropertyCardProps {
   property: Property;
@@ -41,8 +42,6 @@ export function PropertyCard({ property }: PropertyCardProps) {
 
   const handleViewDetails = () => {
     setShowDetails(true);
-    // Simulate property details view
-    alert(`Property Details:\n\nTitle: ${property.title}\nPrice: ${formatPrice(property.price)}\nLocation: ${property.location.city}, ${property.location.state}\nAgent: ${property.agent.name}\nPhone: ${property.agent.phone}\nEmail: ${property.agent.email}\n\nDescription: ${property.description}\n\nFeatures: ${property.features.join(', ')}`);
   };
 
   const handleContactAgent = () => {
@@ -375,7 +374,11 @@ export function PropertyCard({ property }: PropertyCardProps) {
           </motion.div>
         </motion.div>
       </motion.div>
-      {popup}
+      <PropertyDetailsModal
+        isOpen={showDetails}
+        onClose={() => setShowDetails(false)}
+        property={property}
+      />
     </>
   );
 }
