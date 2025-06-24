@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card } from '@/components/ui/card';
-import { X, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { X, Mail, Lock, Eye, EyeOff, Phone } from 'lucide-react';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -14,7 +14,7 @@ interface LoginModalProps {
 
 export function LoginModal({ isOpen, onClose }: LoginModalProps) {
   const [showPassword, setShowPassword] = useState(false);
-  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [isLogin, setIsLogin] = useState(true);
 
@@ -66,12 +66,12 @@ export function LoginModal({ isOpen, onClose }: LoginModalProps) {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-4">
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
+                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-5 h-5" />
                     <Input
-                      type="email"
-                      placeholder="Enter your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      type="tel"
+                      placeholder="Enter your phone number"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                       className="pl-12 bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400"
                       required
                     />

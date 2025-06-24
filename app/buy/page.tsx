@@ -44,7 +44,7 @@ export default function BuyPage() {
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
-              Buy <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Properties</span>
+            Buy <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">Properties</span>
             </motion.h1>
             <motion.p 
               className="text-xl text-slate-300 max-w-2xl mx-auto"
@@ -52,7 +52,7 @@ export default function BuyPage() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
             >
-              Discover your dream property from our extensive collection of homes, apartments, and commercial spaces.
+            Discover your dream property from our extensive collection of homes, apartments, and commercial spaces.
             </motion.p>
           </motion.div>
         </div>
@@ -76,78 +76,78 @@ export default function BuyPage() {
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             >
               <Card className="bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-xl border-2 border-gold-400/40 p-6 shadow-2xl">
-                <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between mb-4">
                   <motion.h2 
                     className="text-lg font-semibold text-white flex items-center"
                     animate={{ color: ["#ffffff", "#fbbf24", "#ffffff"] }}
                     transition={{ duration: 3, repeat: Infinity }}
                   >
-                    <Filter className="w-5 h-5 mr-2" />
-                    Advanced Filters
+                <Filter className="w-5 h-5 mr-2" />
+                Advanced Filters
                   </motion.h2>
                   <motion.div
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     <Button className="bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-600 hover:to-green-600 text-white shadow-lg hover:shadow-emerald-500/25 transition-all duration-300">
-                      <Search className="w-4 h-4 mr-2" />
-                      Search
-                    </Button>
+                <Search className="w-4 h-4 mr-2" />
+                Search
+              </Button>
                   </motion.div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                  <div>
-                    <label className="text-sm font-medium text-slate-300 mb-2 block">Location</label>
-                    <Input
-                      placeholder="City, Area, Locality"
-                      value={searchLocation}
-                      onChange={(e) => setSearchLocation(e.target.value)}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+              <div>
+                <label className="text-sm font-medium text-slate-300 mb-2 block">Location</label>
+                <Input
+                  placeholder="City, Area, Locality"
+                  value={searchLocation}
+                  onChange={(e) => setSearchLocation(e.target.value)}
                       className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-slate-300 mb-2 block">Property Type</label>
-                    <Select value={propertyType} onValueChange={setPropertyType}>
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-slate-300 mb-2 block">Property Type</label>
+                <Select value={propertyType} onValueChange={setPropertyType}>
                       <SelectTrigger className="bg-slate-800/50 border-slate-600 text-white focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40">
-                        <SelectValue placeholder="All Types" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="residential">Residential</SelectItem>
-                        <SelectItem value="commercial">Commercial</SelectItem>
-                        <SelectItem value="agricultural">Agricultural</SelectItem>
-                        <SelectItem value="industrial">Industrial</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-slate-300 mb-2 block">Min Price (₹L)</label>
-                    <Input
-                      placeholder="Min"
-                      value={minPrice}
-                      onChange={(e) => setMinPrice(e.target.value)}
+                    <SelectValue placeholder="All Types" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="residential">Residential</SelectItem>
+                    <SelectItem value="commercial">Commercial</SelectItem>
+                    <SelectItem value="agricultural">Agricultural</SelectItem>
+                    <SelectItem value="industrial">Industrial</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-slate-300 mb-2 block">Min Price (₹L)</label>
+                <Input
+                  placeholder="Min"
+                  value={minPrice}
+                  onChange={(e) => setMinPrice(e.target.value)}
                       className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-slate-300 mb-2 block">Max Price (₹L)</label>
-                    <Input
-                      placeholder="Max"
-                      value={maxPrice}
-                      onChange={(e) => setMaxPrice(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-slate-300 mb-2 block">Max Price (₹L)</label>
+                <Input
+                  placeholder="Max"
+                  value={maxPrice}
+                  onChange={(e) => setMaxPrice(e.target.value)}
                       className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
-                    />
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-slate-300 mb-2 block">Area (Sq Ft)</label>
-                    <Input
-                      placeholder="Min Area"
-                      value={minArea}
-                      onChange={(e) => setMinArea(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-slate-300 mb-2 block">Area (Sq Ft)</label>
+                <Input
+                  placeholder="Min Area"
+                  value={minArea}
+                  onChange={(e) => setMinArea(e.target.value)}
                       className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"
-                    />
-                  </div>
-                </div>
-              </Card>
+                />
+              </div>
+            </div>
+          </Card>
             </motion.div>
           </motion.div>
         </div>
@@ -213,9 +213,9 @@ export default function BuyPage() {
                 transition={{ delay: 1.4, duration: 0.6 }}
               >
                 <Card className="bg-gradient-to-r from-slate-900/90 to-purple-900/90 backdrop-blur-xl border-gold-400/20 p-12 text-center shadow-2xl">
-                  <div className="text-slate-400 text-lg mb-4">No Properties Found</div>
-                  <p className="text-slate-500">Try adjusting your filters to see more results.</p>
-                </Card>
+                <div className="text-slate-400 text-lg mb-4">No Properties Found</div>
+                <p className="text-slate-500">Try adjusting your filters to see more results.</p>
+              </Card>
               </motion.div>
             )}
           </motion.div>
@@ -231,26 +231,26 @@ export default function BuyPage() {
             transition={{ duration: 0.8 }}
           >
             <Card className="bg-gradient-to-r from-slate-800/50 to-purple-800/50 backdrop-blur-xl border-gold-400/20 p-8 text-center shadow-2xl">
-              <h2 className="text-3xl font-bold text-white mb-4">Stay Updated with RAARYA</h2>
-              <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
-                Get the latest property listings, market insights, and exclusive deals delivered to your inbox
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <Input
-                  placeholder="Enter your email address"
+            <h2 className="text-3xl font-bold text-white mb-4">Stay Updated with RAARYA</h2>
+            <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
+              Get the latest property listings, market insights, and exclusive deals delivered to your inbox
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <Input
+                placeholder="Enter your email address"
                   className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 flex-1 focus:border-gold-400"
-                />
+              />
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg hover:shadow-orange-500/25 transition-all duration-300">
-                    Subscribe
-                  </Button>
+                Subscribe
+              </Button>
                 </motion.div>
-              </div>
-            </Card>
+            </div>
+          </Card>
           </motion.div>
         </div>
       </section>

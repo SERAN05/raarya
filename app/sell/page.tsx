@@ -175,7 +175,7 @@ export default function SellPage() {
                       <div>
                         <label className="text-sm font-medium text-slate-300 mb-2 block">Expected Price (₹)</label>
                         <Input
-                          placeholder="Enter expected price"
+                          placeholder="Enter expected price in rupees"
                           value={formData.expectedPrice}
                           onChange={(e) => setFormData({...formData, expectedPrice: e.target.value})}
                           className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-2 focus:ring-gold-400 transition-shadow duration-300 hover:shadow-gold-400/40"

@@ -47,6 +47,8 @@ export default function ServicesPage() {
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalInterest, setTotalInterest] = useState(0);
 
+  const [openOffer, setOpenOffer] = useState<number|null>(null);
+
   const services = [
     {
       icon: Home,
@@ -161,6 +163,70 @@ export default function ServicesPage() {
     }).format(amount);
   };
 
+  // Top Home Loan Offers data
+  const homeLoanOffers = [
+    {
+      logo: '/kotak.png',
+      name: 'Kotak Mahindra Bank',
+      interest: '7.55%',
+      fees: '₹10,000',
+      emi: '₹35,689',
+      ltv: '90%',
+      featured: false,
+      details: 'Kotak Mahindra Bank offers competitive home loan rates with quick processing and flexible repayment options.'
+    },
+    {
+      logo: '/hdfc.png',
+      name: 'HDFC',
+      interest: '8.5%',
+      fees: '₹3,000',
+      emi: '₹37,195',
+      ltv: '90%',
+      featured: true,
+      details: 'HDFC provides home loans with attractive interest rates and minimal documentation.'
+    },
+    {
+      logo: '/lic.png',
+      name: 'LIC Housing Finance',
+      interest: '6.9%',
+      fees: '₹5,000',
+      emi: '₹34,678',
+      ltv: '90%',
+      featured: true,
+      details: 'LIC Housing Finance offers home loans with low interest rates and high loan-to-value ratio.'
+    },
+    {
+      logo: '/sbi.png',
+      name: 'SBI Home Loans',
+      interest: '6.8%',
+      fees: '₹10,000',
+      emi: '₹34,524',
+      ltv: '90%',
+      featured: false,
+      details: 'SBI Home Loans are known for their transparency and customer-friendly policies.'
+    },
+    {
+      logo: '/icici.png',
+      name: 'ICICI Bank',
+      interest: '6.8%',
+      fees: '₹7,500',
+      emi: '₹34,524',
+      ltv: '90%',
+      featured: false,
+      details: 'ICICI Bank offers home loans with flexible tenure and quick disbursal.'
+    },
+    {
+      logo: '/axis.png',
+      name: 'Axis Bank',
+      interest: '6.9%',
+      fees: '₹10,000',
+      emi: '₹34,678',
+      ltv: '90%',
+      featured: false,
+      details: 'Axis Bank provides home loans with attractive interest rates and easy balance transfer.'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
       <AnimatedBackground />
@@ -196,6 +262,51 @@ export default function ServicesPage() {
             </motion.p>
           </motion.div>
         </div>
+      </section>
+
+      {/* Top Home Loan Offers */}
+      <section className="max-w-7xl mx-auto mb-12">
+        <h2 className="text-4xl font-bold text-gold-400 text-center mb-10 tracking-wide">Top Home Loan Offers</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {homeLoanOffers.map((offer, idx) => (
+            <div key={offer.name} className={`relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 rounded-2xl border-2 border-gold-400/30 shadow-xl p-6 flex flex-col items-center text-center ${offer.featured ? 'ring-2 ring-gold-400' : ''}`}>
+              {offer.featured && <span className="absolute top-4 left-4 bg-gold-400 text-slate-900 text-xs font-bold px-3 py-1 rounded-full shadow">FEATURED</span>}
+              <img src={offer.logo} alt={offer.name} className="w-16 h-16 object-contain mb-4 rounded bg-white p-2" />
+              <h3 className="text-xl font-bold text-gold-400 mb-2">{offer.name}</h3>
+              <div className="text-slate-200 text-sm mb-2">Interest <span className="font-bold text-lg text-gold-400">{offer.interest}</span></div>
+              <div className="text-slate-300 text-xs mb-1">Processing Fees <span className="font-semibold">{offer.fees}</span></div>
+              <div className="text-slate-300 text-xs mb-1">EMI <span className="font-semibold">{offer.emi}</span></div>
+              <div className="text-slate-300 text-xs mb-4">Max LTV <span className="font-semibold">{offer.ltv}</span></div>
+              <Button className="w-full bg-gold-400 text-slate-900 font-bold py-2 rounded-lg shadow hover:bg-yellow-400 transition" onClick={() => setOpenOffer(idx)}>Get this deal</Button>
+              </div>
+          ))}
+              </div>
+        {/* Popup for offer details */}
+        {openOffer !== null && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+            <div className="relative w-full max-w-md rounded-2xl border-2 border-gold-400/80 shadow-2xl bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-8 flex flex-col items-center text-center">
+              <button
+                type="button"
+                aria-label="Close offer details"
+                onClick={() => setOpenOffer(null)}
+                className="absolute top-4 right-4 z-10 w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700/80 flex items-center justify-center text-white transition-colors focus:outline-none focus:ring-2 focus:ring-gold-400"
+              >
+                <span className="sr-only">Close</span>
+                ×
+              </button>
+              <img src={homeLoanOffers[openOffer].logo} alt={homeLoanOffers[openOffer].name} className="w-20 h-20 object-contain mb-4 rounded bg-white p-2" />
+              <h3 className="text-2xl font-bold text-gold-400 mb-2">{homeLoanOffers[openOffer].name}</h3>
+              <div className="text-slate-200 text-lg mb-2">Interest Rate: <span className="font-bold text-gold-400">{homeLoanOffers[openOffer].interest}</span></div>
+              <div className="text-slate-300 text-sm mb-1">Processing Fees: <span className="font-semibold">{homeLoanOffers[openOffer].fees}</span></div>
+              <div className="text-slate-300 text-sm mb-1">EMI: <span className="font-semibold">{homeLoanOffers[openOffer].emi}</span></div>
+              <div className="text-slate-300 text-sm mb-1">Max LTV: <span className="font-semibold">{homeLoanOffers[openOffer].ltv}</span></div>
+              <div className="text-slate-200 text-sm mb-4">{homeLoanOffers[openOffer].details}</div>
+              <Button className="w-full bg-gradient-to-r from-gold-400 to-amber-500 hover:from-gold-500 hover:to-amber-600 text-slate-900 font-bold shadow-lg hover:shadow-gold-400/25 transition-all duration-300" onClick={() => setOpenOffer(null)}>
+                Close
+              </Button>
+              </div>
+          </div>
+        )}
       </section>
 
       {/* EMI Calculator Section */}
@@ -269,45 +380,45 @@ export default function ServicesPage() {
                   </div>
 
                   <div className="space-y-6">
-                    <div>
+              <div>
                       <label className="text-sm font-medium text-slate-300 mb-2 block flex items-center">
                         <DollarSign className="w-4 h-4 mr-2 text-gold-400" />
                         Loan Amount (₹)
                       </label>
-                      <Input
+                <Input
                         type="number"
-                        placeholder="e.g., 5000000"
-                        value={loanAmount}
-                        onChange={(e) => setLoanAmount(e.target.value)}
+                  placeholder="e.g., 5000000"
+                  value={loanAmount}
+                  onChange={(e) => setLoanAmount(e.target.value)}
                         className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-gold-400/20"
-                      />
-                    </div>
+                />
+              </div>
 
-                    <div>
+              <div>
                       <label className="text-sm font-medium text-slate-300 mb-2 block flex items-center">
                         <Percent className="w-4 h-4 mr-2 text-gold-400" />
                         Interest Rate (% per annum)
                       </label>
-                      <Input
+                <Input
                         type="number"
                         step="0.1"
-                        placeholder="e.g., 8.5"
-                        value={interestRate}
-                        onChange={(e) => setInterestRate(e.target.value)}
+                  placeholder="e.g., 8.5"
+                  value={interestRate}
+                  onChange={(e) => setInterestRate(e.target.value)}
                         className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-gold-400/20"
-                      />
-                    </div>
+                />
+              </div>
 
-                    <div>
+              <div>
                       <label className="text-sm font-medium text-slate-300 mb-2 block flex items-center">
                         <Calendar className="w-4 h-4 mr-2 text-gold-400" />
                         Loan Tenure (Years)
                       </label>
-                      <Input
+                <Input
                         type="number"
-                        placeholder="e.g., 20"
-                        value={tenure}
-                        onChange={(e) => setTenure(e.target.value)}
+                  placeholder="e.g., 20"
+                  value={tenure}
+                  onChange={(e) => setTenure(e.target.value)}
                         className="bg-slate-800/50 border-slate-600 text-white placeholder:text-slate-400 focus:border-gold-400 focus:ring-gold-400/20"
                       />
                     </div>
@@ -379,9 +490,9 @@ export default function ServicesPage() {
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-1">EMI Breakdown</h3>
                       <p className="text-slate-300 text-sm">Your loan calculation results</p>
-                    </div>
-                  </div>
-
+              </div>
+            </div>
+            
                   {emi > 0 ? (
                     <div className="flex-1 space-y-6">
                       {/* Monthly EMI */}
@@ -538,7 +649,7 @@ export default function ServicesPage() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <Button 
+              <Button 
                       onClick={() => handleOpenConsultation('expert')}
                       className="w-full bg-gradient-to-r from-gold-400 to-amber-500 hover:from-gold-500 hover:to-amber-600 text-slate-900 font-semibold shadow-lg hover:shadow-gold-400/25 transition-all duration-300"
                     >
@@ -604,14 +715,14 @@ export default function ServicesPage() {
                       >
                         <MessageSquare className="w-3 h-3 mr-1" />
                         Consult Now
-                      </Button>
+              </Button>
                     </motion.div>
                   )}
                 </Card>
               </motion.div>
             ))}
           </div>
-        </div>
+            </div>
       </section>
 
       {/* Expert Consultation CTA */}
@@ -667,7 +778,7 @@ export default function ServicesPage() {
                   </Button>
                 </motion.div>
               </div>
-            </Card>
+          </Card>
           </motion.div>
         </div>
       </section>
@@ -786,7 +897,7 @@ export default function ServicesPage() {
                 <p className="text-slate-300 text-sm">{contact.description}</p>
               </motion.div>
             ))}
-          </div>
+            </div>
         </div>
       </section>
 

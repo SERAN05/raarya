@@ -123,16 +123,16 @@ export default function AboutPage() {
                 <p>
                   Founded in 2009, RAARYA has grown from a small local agency to one of the most trusted names in real estate across India. 
                   Our journey began with a simple mission: to make property transactions transparent, efficient, and customer-friendly.
-                </p>
+              </p>
                 <p>
                   Over the years, we've helped over 50,000 families find their perfect homes, facilitated thousands of commercial property deals, 
                   and guided numerous investors in making sound real estate investments.
-                </p>
+              </p>
                 <p>
                   Today, we continue to innovate and expand our services, leveraging technology to provide better experiences while maintaining 
                   the personal touch that our customers value.
-                </p>
-              </div>
+              </p>
+            </div>
             </motion.div>
             
             <motion.div
@@ -212,7 +212,7 @@ export default function AboutPage() {
                   
                   <h3 className="text-xl font-semibold text-white mb-2">{value.title}</h3>
                   <p className="text-slate-300 text-sm">{value.description}</p>
-                </Card>
+            </Card>
               </motion.div>
             ))}
           </div>
@@ -289,7 +289,7 @@ export default function AboutPage() {
               <div className="flex items-center mb-6">
                 <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
                   <Award className="w-6 h-6 text-white" />
-                </div>
+              </div>
                 <h2 className="text-2xl font-bold text-white">Our Vision</h2>
               </div>
               <p className="text-slate-300 leading-relaxed">
@@ -351,7 +351,7 @@ export default function AboutPage() {
                 <p className="text-slate-300 text-sm">{contact.description}</p>
               </motion.div>
             ))}
-          </div>
+            </div>
         </div>
       </section>
 
