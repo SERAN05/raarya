@@ -166,7 +166,7 @@ export default function ServicesPage() {
   // Top Home Loan Offers data
   const homeLoanOffers = [
     {
-      logo: '/kotak.png',
+      logo: '/KOTAK.jpg',
       name: 'Kotak Mahindra Bank',
       interest: '7.55%',
       fees: '₹10,000',
@@ -176,7 +176,7 @@ export default function ServicesPage() {
       details: 'Kotak Mahindra Bank offers competitive home loan rates with quick processing and flexible repayment options.'
     },
     {
-      logo: '/hdfc.png',
+      logo: '/HDFC.jpg',
       name: 'HDFC',
       interest: '8.5%',
       fees: '₹3,000',
@@ -186,7 +186,7 @@ export default function ServicesPage() {
       details: 'HDFC provides home loans with attractive interest rates and minimal documentation.'
     },
     {
-      logo: '/lic.png',
+      logo: '/LIC.jpg',
       name: 'LIC Housing Finance',
       interest: '6.9%',
       fees: '₹5,000',
@@ -196,7 +196,7 @@ export default function ServicesPage() {
       details: 'LIC Housing Finance offers home loans with low interest rates and high loan-to-value ratio.'
     },
     {
-      logo: '/sbi.png',
+      logo: '/SBI.jpg',
       name: 'SBI Home Loans',
       interest: '6.8%',
       fees: '₹10,000',
@@ -206,7 +206,7 @@ export default function ServicesPage() {
       details: 'SBI Home Loans are known for their transparency and customer-friendly policies.'
     },
     {
-      logo: '/icici.png',
+      logo: '/ICICI.jpg',
       name: 'ICICI Bank',
       interest: '6.8%',
       fees: '₹7,500',
@@ -216,7 +216,7 @@ export default function ServicesPage() {
       details: 'ICICI Bank offers home loans with flexible tenure and quick disbursal.'
     },
     {
-      logo: '/axis.png',
+      logo: '/AXIS.jpg',
       name: 'Axis Bank',
       interest: '6.9%',
       fees: '₹10,000',
